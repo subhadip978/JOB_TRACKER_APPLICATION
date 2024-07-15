@@ -12,7 +12,7 @@ exports.saveJobpost=async(req,res)=>{
             salary,
             originaljoburl,
             appliedDate,
-            user: req.user.id,
+            userId: req.user.id,
         });
 		res.status(201).json({
             message: 'Job created successfully!',
@@ -21,6 +21,7 @@ exports.saveJobpost=async(req,res)=>{
 
 
 	}catch(error){
+        console.log(error);
 		res.status(500).json({
             message: 'Creating job failed!',
             error: error.message
@@ -33,9 +34,14 @@ exports.saveJobpost=async(req,res)=>{
 
 
 exports.getAllJobs = async (req, res) => {
-	const {Id}=req.query.id ;
+	const Id=req.user.id ;
+    console.log(Id);
     try {
-        const jobs = await Job.findAll({where:{userId:Id}});
+        const jobs = await Job.findAll(
+            {where:{userId:Id}}
+            );
+
+
         res.status(200).json({
             message: 'Jobs fetched successfully!',
             jobs

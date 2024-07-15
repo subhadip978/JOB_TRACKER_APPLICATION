@@ -26,7 +26,7 @@ app.use("/api/job",jobRouter);
 // app.use("/api/user",companyRouter);
 
 sequelize.
-sync({force:true})
+sync()
 .then((result)=>{
 	
 	
