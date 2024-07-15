@@ -4,13 +4,15 @@ const Job=require("../models/job");
 exports.saveJobpost=async(req,res)=>{
 	try{
 		const { title, company, salary, originaljoburl, appliedDate } = req.body;
+        
 
 		const job = await Job.create({
             title,
             company,
             salary,
             originaljoburl,
-            appliedDate
+            appliedDate,
+            user: req.user.id,
         });
 		res.status(201).json({
             message: 'Job created successfully!',

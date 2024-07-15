@@ -4,7 +4,7 @@ const sequelize=require("../utils/db.js");
 
 
 
-const Job=sequelize.define('job','root','Ineed$10lpa',{
+const Job=sequelize.define('job',{
 	id:{
 
 	type:Sequelize.INTEGER,
@@ -44,3 +44,8 @@ const Job=sequelize.define('job','root','Ineed$10lpa',{
 
 
 })
+
+
+
+
+module.exports=Job ;

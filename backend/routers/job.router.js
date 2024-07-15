@@ -4,6 +4,6 @@ const router=express.Router()
 const jobController=require("../controllers/job.controller");
 
 router.get("/allJobs",jobController.getAllJobs);
-router.post("/allJobs",jobController.saveJobpost);
+router.post("/createJobs",jobController.saveJobpost);
 
 module.exports=router

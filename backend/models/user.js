@@ -2,7 +2,7 @@ const sequelize=require("../utils/db");
 
 const Sequelize=require("sequelize");
 
-
+const Job=require("./job")
 
 const User =sequelize.define('user',{
 	id:{
@@ -12,6 +12,7 @@ const User =sequelize.define('user',{
 		primaryKey:true
 
 	},
+	
 	username:{
 		type:Sequelize.STRING,
 		allowNull:false
@@ -20,11 +21,14 @@ const User =sequelize.define('user',{
 		type:Sequelize.STRING,
 		allowNull:false
 	},
-	pasword:{
+	password:{
 		type:Sequelize.STRING,
 		allowNull:false
 	}
 
 })
+
+User.hasMany(Job,{foreignkey:'userId', as :'jobs'})
+Job.belongsTo(User,{foreignKey:'jobId', as:'users'});
 
 module.exports=User
