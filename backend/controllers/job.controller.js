@@ -55,3 +55,40 @@ exports.getAllJobs = async (req, res) => {
 };
 
 
+exports.createJobRequirement=async(req,res)=>{
+    try{
+
+
+        const { title,
+            company,
+            salary,
+            originaljoburl,
+            // posted,
+            description
+        }=req.body 
+
+        const jobs= await Job.create({
+            title,
+            company,
+            salary,
+            originaljoburl,
+          
+           description
+
+
+        })
+
+
+        res.status(201).json(jobs);
+
+
+
+    }catch(err){
+
+        console.log(err);
+        res.status(500).json({message:err.message})
+
+    }
+}
+
+

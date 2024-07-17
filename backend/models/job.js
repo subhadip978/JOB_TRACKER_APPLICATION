@@ -38,6 +38,10 @@ const Job=sequelize.define('job',{
 		type:Sequelize.DATE,
 		allowNull:true
 
+	},
+	posted:{
+		type:Sequelize.STRING,
+		allowNull:true
 	}
 
 

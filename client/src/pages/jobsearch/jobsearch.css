@@ -1,0 +1,57 @@
+.jobsearch{
+	font-family: Arial, sans-serif;
+
+	display: flex;
+	justify-content: space-around; 
+
+
+}
+
+input[type="text"],
+select {
+  width: 19rem;
+  padding: 8px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.filters{
+	margin-top: 4%;
+}
+
+
+.btn{
+	background-color: white;
+	border: 1px solid teal;
+	padding: 8px 16px;
+	border-radius: 4px;
+	margin: 2px;
+
+}
+.btn:hover{
+	background-color: teal;
+	border: none;
+
+}
+
+.primary-jobsearch{
+	margin: 10px 20px;
+}
+
+
+.job-item{
+	
+	cursor: pointer;
+	transition: transform 0.3s ease, box-shadow 0.3s ease;
+	background-color: #eee6e6;
+	margin: 12px;
+	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); 
+	border-bottom: 4px solid #ee9cfb ;
+	border-radius: 10px;
+	padding: 5px 5px;
+}
+.job-item:hover {
+	transform: translateY(-5px); 
+  }

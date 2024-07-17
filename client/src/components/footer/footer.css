@@ -1,0 +1,17 @@
+
+.footer{
+	border-top: 1px solid #5d5c5c;
+	margin-top: 5rem;
+}
+
+.primary-footer ul{
+	display: flex;
+	gap: 35px;
+	justify-content:center;
+
+}
+.primary-footer ul li{
+	text-decoration: none;
+	list-style: none;
+	
+}

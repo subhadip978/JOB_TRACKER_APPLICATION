@@ -16,6 +16,7 @@ const tasks=[
 {title:"Add company details to my job tracker ",
 	description:"Save  your dream  company details and track the company .",
 	buttonText: "Add Manually",
+	buttonLink:"/jobsearch"
 
 },
 
