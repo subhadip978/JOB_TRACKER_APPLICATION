@@ -42,7 +42,17 @@ const Job=sequelize.define('job',{
 	posted:{
 		type:Sequelize.STRING,
 		allowNull:true
-	}
+	},
+	location:{
+		type:Sequelize.STRING,
+		allowNull:true
+	},
+	description:{
+		type:Sequelize.STRING,
+		allowNull:true
+	},
+
+	
 
 
 

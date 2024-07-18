@@ -1,5 +1,6 @@
 
 const Job=require("../models/job");
+const {Op}=require("sequelize");
 
 exports.saveJobpost=async(req,res)=>{
 	try{
@@ -63,6 +64,7 @@ exports.createJobRequirement=async(req,res)=>{
             company,
             salary,
             originaljoburl,
+            location,
             // posted,
             description
         }=req.body 
@@ -72,6 +74,7 @@ exports.createJobRequirement=async(req,res)=>{
             company,
             salary,
             originaljoburl,
+            location,
           
            description
 
@@ -88,6 +91,65 @@ exports.createJobRequirement=async(req,res)=>{
         console.log(err);
         res.status(500).json({message:err.message})
 
+    }
+}
+
+
+
+exports.getAllJobLists=async(req,res)=>{
+    try{
+
+      const jobs=  await Job.findAll({
+            where:{
+                description:{
+                    [Op.ne]:null
+                }
+            }
+        })
+        res.status(201).json({
+            message: 'JobLists fetched successfully!',
+            jobs
+        });
+
+
+    }catch(err){
+        res.status(500).json({message:err.message})
+    }
+}
+
+
+exports.searchJobList=async(req,res)=>{
+    try{
+        const {search,title}=req.body;
+        
+
+        console.log(search);
+
+        const jobsearch=await Job.findAll({where:{
+
+            ...(search &&
+                {
+                    [Op.or]:[
+                
+                 {title:{[Op.like]:`%${search}`}},
+                 {company:{[Op.like]:`%${search}`}},
+                 {location:{[Op.like]:`%${search}`}}
+               ] }),
+
+
+            ...(title && {title:{[Op.like]:`%${title}%`}})
+
+
+        }})
+
+        res.status(201).json(jobsearch);
+
+
+
+
+    }catch(err){
+        console.log(err);
+        res.status(500).json({message:err.message})
     }
 }
 

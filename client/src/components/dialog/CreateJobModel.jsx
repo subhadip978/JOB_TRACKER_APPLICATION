@@ -14,12 +14,24 @@ import {
 	Textarea
   } from '@chakra-ui/react'
   import { useState } from 'react';
+  import { useContext } from 'react';
+import  { JobListContext } from '../../context/JobContext';
 
 
 const CreateJobModel = () => {
 
-	const [inputs,setInputs]=useState();
-	const[jobList,setJobList]=useState([]);
+	const {handleSubmit}=useContext(JobListContext)
+
+	const [inputs,setInputs]=useState({
+		title: '',
+		company: '',
+		salary: 0,
+		originaljoburl:'',
+		location:'',
+		description:''
+		
+	});
+	
 
 	const { isOpen, onOpen, onClose } = useDisclosure()
 
@@ -27,33 +39,14 @@ const CreateJobModel = () => {
 const handleChange=(e)=>{
 
 	setInputs((prev)=>({...prev,[e.target.name]:e.target.value}))
-
-
-
 }
 
+const onSubmit=(e)=>{
+	e.preventDefault();
+	console.log(inputs);
+	handleSubmit(inputs,onClose)
+}
 
-const handleSubmit=async()=>{
-	try{
-	  const {data}=await axios.post("/api/job/createJobsrequirement",inputs,{withCredentials:true})
-	  console.log(data);
-	  setJobList([...jobs,inputs]);
-	
-	  onClose();
-  
-	}catch(err){
-	  console.log(err);
-	  toast({
-		title: 'failed!',
-			description: 'failed to create  job requirement .',
-			status: 'failed',
-			duration: 5000,
-			isClosable: true,
-  
-  
-	  })
-	}
-  }
 
   return (
 	<div>
@@ -68,30 +61,43 @@ const handleSubmit=async()=>{
 	<ModalBody>
 		<FormControl>
 		<Input
+		name='title'
 		type='text'
 		placeholder='enter job title'
 		onChange={handleChange}
 		mb={4}/>
 
 		<Input
+		name='company'
 		type='text'
 		placeholder='enter job company'
 		onChange={handleChange}
 		mb={4}/>
 
 		<Input
+		name='salary'
 		type='text'
 		placeholder='enter job salary'
 		onChange={handleChange}
 		mb={4}/>
 
 		<Input
+		name='originaljoburl'
 		type='text'
 		placeholder='enter job original job url'
 		onChange={handleChange}
 		mb={4}/>
 
+		
+		<Input
+		name='location'
+		type='text'
+		placeholder='enter job location'
+		onChange={handleChange}
+		mb={4}/>
+
 		<Textarea
+		name='description'
         placeholder='Enter the description'
 		onChange={handleChange}
         size='lg'
@@ -99,12 +105,13 @@ const handleSubmit=async()=>{
       />
 		
 
+
 		</FormControl>
 	  
 	</ModalBody>
 
 	<ModalFooter>
-	<Button colorScheme='blue' mr={3} onClick={handleSubmit}>
+	<Button colorScheme='blue' mr={3} onClick={onSubmit}>
 		Submit
 	  </Button>
 	  <Button colorScheme='blue' mr={3} onClick={onClose}>
