@@ -28,6 +28,7 @@ const CreateJobModel = () => {
 		salary: 0,
 		originaljoburl:'',
 		location:'',
+		jobtype:'',
 		description:''
 		
 	});
@@ -93,6 +94,13 @@ const onSubmit=(e)=>{
 		name='location'
 		type='text'
 		placeholder='enter job location'
+		onChange={handleChange}
+		mb={4}/>
+
+		<Input
+		name='jobtype'
+		type='text'
+		placeholder='enter jobtype'
 		onChange={handleChange}
 		mb={4}/>
 

@@ -55,3 +55,35 @@ select {
 .job-item:hover {
 	transform: translateY(-5px); 
   }
+ 
+   .jobsection{
+	display: flex;
+
+	 
+	
+	
+}  
+.filtersection{
+	background-color:rgb(200, 151, 151); 
+	border-radius: 10px;
+	flex:.5;
+}
+
+select{
+	width: 7rem;
+}
+.primaryfiltersection{
+	/* width: 6rem; */
+	 display: flex; 
+	flex-direction: column;
+  } 
+
+  .joblist{
+	flex: 2;
+	background-color: rgb(200, 157, 157);
+	border-radius: 8px;
+	padding: 10px 10px;
+	margin: 10px 10px;
+  }
+
+  

@@ -1,0 +1,51 @@
+body {
+    font-family: 'Lato', sans-serif;
+}
+
+.item {
+    display: flex;
+    background-color: rgb(21, 2, 32);
+    color: wheat;
+    align-items: center;
+    justify-content: center;
+    list-style: none;
+    gap: 80px;
+    padding: 20px 50px;
+    font-size: 20px;
+}
+
+ul li {
+    z-index: 1;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 1em;
+    padding: 10px 10px;
+}
+
+
+
+ul li:nth-child(1):hover {
+    left: 0;
+	background: linear-gradient(45deg, #4f1919, #ff3333);
+    border-radius: 8px;
+
+}
+
+
+
+ul li:nth-child(2):hover {
+    left: 0;
+	background: linear-gradient(45deg, #4f1919, #ff3333);
+    border-radius: 8px;
+
+
+
+}
+
+
+ul li:nth-child(3):hover {
+    left: 0;
+	background: linear-gradient(45deg, #4f1919, #ff3333);
+    border-radius: 8px;
+
+}

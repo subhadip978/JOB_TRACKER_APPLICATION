@@ -1,10 +1,19 @@
+
  .App{
 	background-color: aqua;
-	height: 100vh;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	
 } 
+
+.navbar{
+	margin-bottom: 25px;
+}
 .container {
 	max-width: 600px;
-	margin: 0 auto;
+	/* margin-top: 10px ; */
+	margin: auto; 
 	background-color: #fff;
 	padding: 20px;
 	border-radius: 8px;

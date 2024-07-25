@@ -1,4 +1,4 @@
-import { FormControl, Input ,Button, useToast} from '@chakra-ui/react'
+import { FormControl, Input ,Button, useToast,FormLabel, Box} from '@chakra-ui/react'
 import React from 'react'
 import { useState } from 'react'
 import axios from 'axios'
@@ -51,16 +51,28 @@ const Signup = () => {
 
 	}
   return (
-	<>
+	<Box  d="flex"
+	justifyContent="center"
+	p={3}
+	bg="white"
+	w="100%"
+	m="40px 0 15px 0"
+	borderRadius="lg"
+	borderWidth="1px">
 	
-	<FormControl>
+	<FormControl  >
+		<FormLabel>NAME</FormLabel>
 		 <Input
         id="username"
         name="username"
         placeholder="Enter your username"
         onChange={handleChange}
       />
+	  </FormControl>
 
+
+<FormControl >
+<FormLabel>EMAIL</FormLabel>
 		<Input
 		  id="email"
 		  name="email"
@@ -69,6 +81,11 @@ const Signup = () => {
 		  onChange={handleChange}
 		/>
 
+	  </FormControl>
+
+	  <FormControl >
+
+<FormLabel>PASSWORD</FormLabel>
 	 <Input
         id="password"
         name="password"
@@ -79,11 +96,14 @@ const Signup = () => {
 	</FormControl>
 
 	<Button
+	colorScheme='blue'
+	width="100%"
+	style={{margin:"15px 10rem", width:"10rem"}}
 	onClick={handleSubmit}>
 		Sign up
 
 	</Button>
-	</>
+	</Box>
   )
 }
 

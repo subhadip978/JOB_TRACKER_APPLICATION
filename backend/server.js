@@ -29,7 +29,7 @@ sequelize.
 sync()
 .then((result)=>{
 	
-	
+
 
 	app.listen(port,()=>{
 		console.log(`serever is running at ${port}`)

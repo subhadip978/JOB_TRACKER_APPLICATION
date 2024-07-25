@@ -5,8 +5,9 @@ import Signup from '../../components/authentication/Signup'
 import Login from '../../components/authentication/Login'
 const Authpage = () => {
   return (
-	<Container>
-		<Box>
+	<Container maxW="xl" >
+		<Box bg="white"  p={4} borderRadius="lg" borderWidth="1px"   d="flex"
+        justifyContent="center" alignItems="center" >
 		<Tabs variant='soft-rounded' colorScheme='green'>
   <TabList>
     <Tab>SIGN UP</Tab>
@@ -14,7 +15,7 @@ const Authpage = () => {
   </TabList>
   <TabPanels>
     <TabPanel>
-     <Signup/>
+     <Signup />
     </TabPanel>
 
     <TabPanel>

@@ -5,17 +5,17 @@ import { Link } from 'react-router-dom'
 
 
 const tasks=[
-	{title:"Add job to my job tracker ",
-	description:"Bookmark jobs from your favorite job boards using Teal’s Chrome Extension or add them manually.",
+	{title:"Add job details to my job tracker ",
+	description:"Save jobs from your favorite job boards using ",
 	buttonText: "Add Manually",
 	buttonLink:"/jobtracker"
 
 
 },
 
-{title:"Add company details to my job tracker ",
+{title:"Search  your dream job",
 	description:"Save  your dream  company details and track the company .",
-	buttonText: "Add Manually",
+	buttonText: "Let's search",
 	buttonLink:"/jobsearch"
 
 },

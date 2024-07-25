@@ -9,5 +9,6 @@ router.post("/createJobs",verifyToken,jobController.saveJobpost);
 router.post("/createJobsrequirement",verifyToken,jobController.createJobRequirement);
 router.get("/getAllJoblists",verifyToken,jobController.getAllJobLists);
 router.post("/searchAllJoblists",verifyToken,jobController.searchJobList);
+router.post("/filterJobList",verifyToken,jobController.filterJobList);
 
 module.exports=router

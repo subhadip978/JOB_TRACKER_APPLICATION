@@ -6,6 +6,8 @@ import { useState } from 'react'
 
 const Jobtracker = () => {
   const[jobs,setJobs]=useState("")
+
+  
   return (
 	<div>
     <p>JOBTRACKER</p>

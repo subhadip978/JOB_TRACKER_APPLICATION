@@ -133,7 +133,7 @@ exports.searchJobList=async(req,res)=>{
                 
                  {title:{[Op.like]:`%${search}`}},
                  {company:{[Op.like]:`%${search}`}},
-                 {location:{[Op.like]:`%${search}`}}
+                 
                ] }),
 
 
@@ -151,6 +151,33 @@ exports.searchJobList=async(req,res)=>{
         console.log(err);
         res.status(500).json({message:err.message})
     }
+}
+
+
+exports.filterJobList=async(req,res)=>{
+try{
+
+    const {location,jobtype,salary}=req.body;
+    console.log(location);
+    const filterJobs=await Job.findAll({where:{
+        [Op.or]:[
+
+        ...(location && location !== 'all' ? [{ location: { [Op.like]: `%${location}%` } }] : []),
+        ...(jobtype && jobtype !== 'all' ? [{ type: { [Op.like]: `%${jobtype}%` } }] : []),
+        ...(salary && salary !== 'all' ? [{ salary: { [Op.between]: salary.split('-').map(Number) } }] : [])
+        ]
+
+    }})
+
+    res.status(201).json(filterJobs);
+
+
+}catch(err){
+    console.log(err);
+    res.status(500).json({message:err.message})
+
+}
+
 }
 
 

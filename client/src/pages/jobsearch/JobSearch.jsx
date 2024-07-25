@@ -15,8 +15,14 @@ const JobSearch = () => {
 	const [title,setTitle]=useState('');
 	// const {jobList}=useContext(JobListContext);
 	const [jobList, setJobList] = useState([]);
+	const [filters, setFilters] = useState({
+		salary: '',
+		jobtype: '',
+		location: ''
+	  });
+	  const [showFilters, setShowFilters] = useState(false);
 
-	const fetchJobs=async()=>{
+	const searchJobs=async(req,res)=>{
 		try{
 			console.log(search);
 			const {data}=await axios.post("api/job/searchAllJoblists",({search,title}),{withCredentials:true})
@@ -24,8 +30,32 @@ const JobSearch = () => {
 			setJobList(data)
 			console.log(jobList);
 
+
+		}catch(err){
 			toast({
-				title: 'Job search successfull',
+				title: 'Job search failed',
+					description: 'unable to search jobs',
+					status: 'success',
+					duration: 5000,
+					isClosable: true,
+		  
+		  
+			  })
+
+		}}
+
+
+
+	const fetchJobs=async(req,res)=>{
+		try{
+			console.log(search);
+			const {data}=await axios.get("api/job/getAllJoblists",{withCredentials:true})
+			console.log(data);
+			setJobList(data)
+			console.log(jobList);
+
+			toast({
+				title: 'Explore your dream job ',
 					description: 'here is the relatable  jobs',
 					status: 'success',
 					duration: 5000,
@@ -39,7 +69,7 @@ const JobSearch = () => {
 {
 	console.log(err);
 	toast({
-		title: 'Job search failed',
+			title: 'Job search failed',
 			description: 'unable to search jobs',
 			status: 'success',
 			duration: 5000,
@@ -49,6 +79,8 @@ const JobSearch = () => {
 	  })
 
 }	}
+
+
 
 useEffect(()=>{
   fetchJobs();
@@ -64,12 +96,51 @@ useEffect(()=>{
 	  };
 
 	  const handleSearch=()=>{
-		fetchJobs();
+		searchJobs();
 	  }
 	  useEffect(() => {
 		console.log(jobList);
 	  }, [jobList]);
 	
+	 
+
+	  const handleFilter = async() => {
+		try{
+			const {data}=await axios.post("/api/job/filterJobs",{withCredentials:true})
+			console.log(data);
+			setJobList(data);
+			
+			toast({
+				title: 'Explore your dream job ',
+					description: 'here is the relatable  jobs',
+					status: 'success',
+					duration: 5000,
+					isClosable: true,
+		  
+		  
+			  })
+	
+	
+		}catch(err){
+			console.log(err);
+		toast({
+				title: 'failed',
+				description: 'unable to filter jobs',
+				status: 'success',
+				duration: 5000,
+				isClosable: true,
+	  
+	  
+		  })
+	
+		}
+	  };
+
+	  const handleChange=(e)=>{
+
+		setFilters((prev)=>({...prev,[e.target.name]:e.target.value}))
+
+	  }
 
 
   return (
@@ -99,12 +170,45 @@ useEffect(()=>{
 
 		</div>
 
-		<div className="filters">
-			<button	className='btn' onClick={handleSearch}>Filters</button>
-			<button	className='btn'>Sort</button>
-		</div>
 
-		</div>
+		<div className="filters">
+			<button	className='btn' onClick={handleSearch}>SEARCH</button>
+			</div>
+			</div>
+
+
+
+		<div className="jobsection">
+		<div className='filtersection'>
+			 <button className='btn' onClick={handleFilter}>FILTERS</button>
+		
+		 <div className='primaryfiltersection'>
+			<select name="type"  onChange={handleChange}>
+          <option value="all">jobtype</option>
+          <option value="full-time">Full-time</option>
+          <option value="part-time">Part-time</option>
+          <option value="contract">Contract</option>
+        </select>
+
+		<select name="type"  onChange={handleChange}>
+          <option value="all">Salary</option>
+          <option value="0-100000">0-1L</option>
+          <option value="100001-500000">1L - 5L</option>
+          <option value="500001-1000000">5L - 10L</option>
+        </select>
+
+		<select name="type"  onChange={handleChange}>
+          <option value="all">Location</option>
+          <option value="remote">remote</option>
+          <option value="Hybrid">Hybrid</option>
+          <option value="Onsite">Onsite</option>
+        </select>
+		 </div>
+			
+			</div>
+			
+
+	
 
 
 <div className="joblist">
@@ -127,15 +231,10 @@ useEffect(()=>{
 
 		)}
 </div>
+</div>
 
 
 
-
-
-
-
-
-	
 	</div>
   )
 }

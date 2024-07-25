@@ -35,9 +35,23 @@ const JobContext = ({children}) => {
 	 fetchJobList();
 },[]);
 
+
+
 	const handleSubmit=async(inputs,onClose)=>{
 		try{
 			console.log(inputs);
+			for (const key in inputs) {
+				if (!inputs[key]) {
+					toast({
+						title: 'WARNING',
+						description: 'All fields must be filled.',
+						status: 'error',
+						duration: 5000,
+						isClosable: true,
+					});
+					return;
+				}
+			}
 		  const {data}=await axios.post("/api/job/createJobsrequirement",inputs,{withCredentials:true})
 		  console.log(data);
 		  setJobList([...jobList,inputs]);

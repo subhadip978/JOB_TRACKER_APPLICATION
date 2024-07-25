@@ -11,6 +11,9 @@ import JobSearch from './pages/jobsearch/JobSearch';
 import './index.css'
 const App = () => {
   return (
+   <div className="main">
+
+
     <Router>
 
       <Routes>
@@ -21,6 +24,7 @@ const App = () => {
         <Route path="/jobsearch" element={<JobSearch/>}/>
       </Routes>
     </Router>
+   </div>
   )
 }
 
